@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Game</title>
+  <link rel="stylesheet" href="gamestyle.css" type="text/css">
+  <script src="gamejq.js" type="text/javascript"></script>
+  <script src="jquery.js" type="text/javascript"></script>
+</head>
+<body>
+  <h1 id="logo">Game</h1>
+  <div id="grid">
+  <input type="radio" name="tilecolor" value="red" >Red</input>
+  <input type="radio" name="tilecolor" value="blue" >Blue</input> 
+  <input type="radio" name="tilecolor" value="green" >Green</input>
+   <table cellpadding="0px" cellspacing="5px">  
+    <tr>
+	<td id="cell11"><div class="default">1</div></td>
+     	<td id="cell12"><div class="default">2</div></td>
+     	<td id="cell13"><div class="default">3</div></td>
+    </tr>
+    <tr>
+	<td id="cell21"><div class="default">4</div></td>
+	<td id="cell22"><div class="default">5</div></td>
+	<td id="cell23"><div class="default">6</div></td>
+    </tr>
+    <tr>
+	<td id="cell31"><div class="default">7</div></td>
+	<td id="cell32"><div class="default">8</div></td>
+	<td id="cell33"><div class="default">9</div></td>
+    </tr>
+   </table>
+   <button onclick="resetColor();">reset</button>
+   <button onclick="randomize();">Randomize</button>
+  </div>
+</body>
+</html>

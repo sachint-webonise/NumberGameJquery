@@ -1,0 +1,20 @@
+table{
+	background-color: #eee;
+}
+#grid {
+	width: 500px;
+	margin: auto;
+}
+
+div.default,.blue,.red,.green{
+	background-color: #ccc;
+	height: 145px;
+	width: 145px;
+	font-size: 40px;
+	font-weight: 400;
+	text-align: center;
+}
+
+.default:hover,.blue:hover,.red:hover,.green:hover {
+	border: dotted;
+}
