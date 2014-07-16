@@ -1,0 +1,16 @@
+Equation : 1x-1y=0
+StartPoint : 0
+EndPoint : 200
+Steps : 10
+
+
+Equation : 1x-2y=0
+StartPoint : 0
+EndPoint : 200
+Steps : 10
+
+
+Equation : 2x-1y=0
+StartPoint : 0
+EndPoint : 200
+Steps : 10
