@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<style>
+#myCanvas {
+border:1px solid blue ;
+background: khaki;
+}
+</style>
+
+<script type="text/javascript">
+var canvas;
+var context;
+
+function showGrid(){	
+canvas = document.getElementById('myCanvas');
+context = canvas.getContext('2d');	
+context.lineWidth = 1;
+context.strokeStyle = '#000000';
+
+var lineSpacing = 20;
+var xPos = 0;	
+var yPos = 0;
+var numberOfHorizontalLines = parseInt(canvas.height/lineSpacing);	
+var numberOfVerticalLines = parseInt(canvas.width/lineSpacing);
+var heighthalf = canvas.height/2;
+var widthhalf = canvas.width/2;
+
+context.translate(canvas.width/2,canvas.height/2);
+context.scale(1,-1);
+context.beginPath();	
+context.moveTo(0,0);
+context.lineTo(widthhalf,0);
+context.stroke();
+context.beginPath();	
+context.moveTo(0,0);
+context.lineTo(0,heighthalf);
+context.stroke();
+context.beginPath();	
+context.moveTo(0,0);
+context.lineTo(-widthhalf,0);
+context.stroke();
+context.beginPath();	
+context.moveTo(0,0);
+context.lineTo(0,-heighthalf);
+context.stroke();
+context.fillText("0,0",0,0);
+
+// Put the grid on canvas
+for(var i=0;i<widthhalf;i=i+lineSpacing)
+{
+	context.beginPath();	
+	context.moveTo(i,0);
+	context.lineTo(i,heighthalf);
+	context.stroke();
+}
+
+for(var i=0;i<heighthalf;i=i+lineSpacing)
+{
+	context.beginPath();	
+	context.moveTo(0,i);
+	context.lineTo(widthhalf,i);
+	context.stroke();
+}
+
+parseEquation();
+}
+
+function parseEquation(){
+	var eqString = document.getElementById('equation').value;
+	var startx = parseInt(document.getElementById('startpoint').value);
+	var endx = parseInt(document.getElementById('endpoint').value);
+	var step = parseInt(document.getElementById('steps').value);
+	
+    	var spacepattern = /\s/g;
+    	var result = eqString.match(spacepattern);
+	if(result)
+		alert("Enter linear equation in form ax+by=c without spaces ");
+		
+	
+	var a = parseInt(eqString.substring(0,eqString.indexOf("x")));
+	var b = parseInt(eqString.substring(eqString.indexOf("x")+1,eqString.indexOf("y")));
+        var c = parseInt(eqString.substring(eqString.indexOf("=")+1));
+       
+        var starty = -(startx*a)/b + (c/b); 
+        var endy = -(endx*a)/b + (c/b);
+       
+        draw(a,b,c);
+        
+}
+
+
+function draw(a,b,c){
+	
+        var startx = parseInt(document.getElementById('startpoint').value);
+	var endx = parseInt(document.getElementById('endpoint').value);
+	var step = parseInt(document.getElementById('steps').value);
+        var stepsize=(endx-startx)/step;
+        var starty = (-(startx*a)/b) + (c/b); 
+        var newx=startx;
+        for( var i=0;i<stepsize;i++){
+            var newy = (-(newx*a)/b) + (c/b);
+            var newxend=newx+step;
+            var newyend = (-(newxend*a)/b) + (c/b);
+            context.beginPath();
+            context.moveTo(newx,newy);
+            context.lineTo(newxend,newyend);
+            context.stroke();
+            context.arc(newxend,newyend,3,0,Math.PI*2,true);
+            context.closePath();
+            context.fillStyle="#FF0000";
+            context.fill();
+          
+            newx=newx+step;
+        }
+	
+}
+
+</script>
+</head>
+
+<body>
+<form>
+Equation:<input type = "text" id = "equation"><br>
+StartPoint:<input type = "text" id = "startpoint"><br>
+EndPoint:<input type = "text" id = "endpoint"><br>
+Steps:<input type = "text" id = "steps"><br> 
+<input type="button" onclick="showGrid();" value="Submit"> 
+</form>
+<canvas id="myCanvas" width="800" height="800"></canvas><br>
+</body>
+
+</html>
+
